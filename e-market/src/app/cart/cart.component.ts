@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnChanges, OnInit} from '@angular/core';
 // import { Product } from '../shared/product.model';
 import { CartService } from './cart.service';
 
@@ -7,16 +7,36 @@ import { CartService } from './cart.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnChanges {
   visible:boolean = true;
   items = this.cartService.getItems();
   cartTotal = this.cartService.getCartTotal();
 
   constructor(private cartService: CartService) {};
 
-  ngOnInit(): void {};
+  ngOnInit(): void {
+    this.cartTotal = this.cartService.getCartTotal();
+    // this.cartService.getItems().subscribe((data:[])=>{
+    //   console.log(data);
+    //   this.items.forEach(i=>{
+    //     this.cartTotal=this.cartTotal + i.price;
+    //     console.log("hopefully this is the total: " + this.cartTotal);
+    //   })
+    // })
+  };
+
+  ngOnChanges():void {
+    console.log("hi");
+  };
+
+  $onChanges(){
+    console.log('hi')
+  }
+  
+
   getCartTotal(){
-    return this.cartService.getCartTotal();
+    // this.cartTotal = this.cartService.getCartTotal();
+    // return this.cartService.getCartTotal();
   }
   
   removeFromCart(e:Event){
@@ -29,11 +49,11 @@ export class CartComponent implements OnInit {
     // console.log(this.items);
   }
 
-  addQuantity(){
-
+  addQuantity(e:Event){
+    console.log(e);
   }
 
-  subtractQuantity(){
-    
+  subtractQuantity(e:Event){
+    console.log(e);
   }
 }

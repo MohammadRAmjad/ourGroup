@@ -2,12 +2,15 @@ import { Product } from "../shared/product.model";
 
 export class CartService {
     items: Product[] = [];
-    cartTotal: number = 0;
+    cartTotal: number =0;
 
     addToCart(product: Product) {
         this.items.push(product);
         console.log(product.price);
-        this.cartTotal = this.cartTotal + product.price;
+        
+    }
+    addToCartTotal(price:number){
+        this.cartTotal = this.cartTotal + price;
         console.log(this.cartTotal);
     }
 
@@ -17,6 +20,12 @@ export class CartService {
 
     getItems() {
         return this.items;
+    }
+
+    getItem(id:number){
+        return this.items.filter(function(id){
+            console.log(id);
+        });
     }
 
     clearCart() {
