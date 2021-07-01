@@ -10,23 +10,21 @@ import { Product } from 'src/app/shared/product.model';
 export class ProductComponent implements OnInit {
   @Input()
   product!: Product;
-  liked:boolean = false;
-  
-  // private cartService: CartService;
-  constructor(private cartService: CartService) { 
-    
-  }
+  liked: boolean = false;
+
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
   }
 
-  onAdd(){
-    console.log("Add "+ this.product.title +" to cart!");
+  onAdd() {
+    console.log("Add " + this.product.title + " to cart!");
     // add to cart
-    this.cartService.addProductToCart(this.product);
+    this.cartService.addToCart(this.product);
   }
 
-  toggleLike(){
+  toggleLike() {
     this.liked = !this.liked;
+    console.log(this.liked);
   }
 }
