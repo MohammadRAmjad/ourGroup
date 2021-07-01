@@ -1,19 +1,38 @@
 import { Product } from "../shared/product.model";
 
-
 export class CartService {
-    private products: Product[] = [];
-    getCartProducts() {
-        return this.products.slice();
+    items: Product[] = [];
+    cartTotal: number = 0;
+
+    addToCart(product: Product) {
+        this.items.push(product);
+        console.log(product.price);
+        this.cartTotal = this.cartTotal + product.price;
+        console.log(this.cartTotal);
     }
 
-    addProductToCart(prod: Product) {
-        this.products.push(prod);
-        console.log("You are adding" + Product);
-        console.log(this.products);
-    };
+    getCartTotal() {
+        return this.cartTotal;
+    }
 
-    removeProductFromCart() {
+    getItems() {
+        return this.items;
+    }
 
-    };
+    clearCart() {
+        this.items = [];
+        return this.items;
+    }
+    // private products: Product[] = [];
+    // getCartProducts() {
+    //     return this.products.slice();
+    // }
+
+    // addProductToCart(prod: Product) {
+    //     this.products.push(prod);
+    //     console.log("You are adding" + Product);
+    //     console.log(this.products);
+    // };
+
+    // removeProductFromCart() {};
 }

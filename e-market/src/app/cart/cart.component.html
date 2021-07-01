@@ -1,24 +1,25 @@
 <div class="row">
-    <div class="col-xs-10">
-      <app-cart-edit></app-cart-edit>
-      <hr>
-      <ul class="list-group">
-        <a
-          class="list-group-item"
-          style="cursor: pointer"
-        >
-        Cart Total : {{cartTotal}}
+  <div class="col-xs-10">
+    <app-cart-edit></app-cart-edit>
+    <hr>
+    <ul class="list-group">
+      <!-- <a class="list-group-item" style="cursor: pointer">
+         Cart Total : {{cartTotal}}
       
-        Cart: {{cartProducts}}
-        </a>
-        <!-- <app-product
-        *ngFor="let item of products"
-        [cartProducts]= "item"
-        ></app-product> -->
-       
-          
-      </ul>
-    </div>
-  </div>
+        Cart: {{cartProducts}} 
+      </a> -->
+      <h3>Cart</h3>
 
-  <!-- *ngFor="let product of items" -->
+      <div class="cart-item" *ngFor="let item of items">
+        <span>{{ item.title }}</span>
+        <span>{{ item.price | currency }}</span>
+      </div>
+
+
+      <h3>Cart Total</h3>
+      <span>{{cartTotal}}</span>
+    </ul>
+  </div>
+</div>
+
+<!-- *ngFor="let product of items" -->
