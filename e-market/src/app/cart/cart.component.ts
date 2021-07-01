@@ -28,4 +28,12 @@ export class CartComponent implements OnInit {
     this.cartTotal = 0;
     // console.log(this.items);
   }
+
+  addQuantity(){
+
+  }
+
+  subtractQuantity(){
+    
+  }
 }
