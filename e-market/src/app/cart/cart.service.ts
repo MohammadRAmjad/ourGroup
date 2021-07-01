@@ -20,6 +20,7 @@ export class CartService {
     }
 
     clearCart() {
+        console.log(this.getItems());
         this.items = [];
         return this.items;
     }
