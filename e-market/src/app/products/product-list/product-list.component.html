@@ -14,10 +14,16 @@
     <div ngbDropdown class="d-inline-block">
       <button class="btn btn-outline-primary" id="category" ngbDropdownToggle>Category</button>
       <ul ngbDropdownMenu aria-labelledby="category">
-        <li><button ngbDropdownItem>Furniture</button></li>
-        <li><button ngbDropdownItem>Electronic</button></li>
-        <li><button ngbDropdownItem>Clothing</button></li>
-        <li><button ngbDropdownItem>All</button></li> 
+        <li><button ngbDropdownItem name = "furniture" 
+          (click)="buttonClick('Furniture')">Furniture</button></li>
+        <li><button ngbDropdownItem name = "Electronics" 
+          (click)="buttonClick('Electronics')">Electronics</button></li>
+        <li><button ngbDropdownItem name = "Clothing" 
+          (click)="buttonClick('Clothing')">Clothing</button></li>
+        <li><button ngbDropdownItem name = "Books" 
+            (click)="buttonClick('Books')">Books</button></li>
+        <li><button ngbDropdownItem name = "All" 
+          (click)="buttonClick('All')">All</button></li> 
       </ul>
     </div>
   </div>
