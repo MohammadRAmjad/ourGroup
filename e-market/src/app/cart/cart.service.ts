@@ -2,7 +2,7 @@ import { Product } from "../shared/product.model";
 
 export class CartService {
     items: Product[] = [];
-    cartTotal: number = 0;
+    cartTotal: number;
 
     addToCart(product: Product) {
         this.items.push(product);
