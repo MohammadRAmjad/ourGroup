@@ -1,6 +1,9 @@
+  
 import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/cart/cart.service';
 import { Product } from 'src/app/shared/product.model';
+import { isWhiteSpaceLike } from 'typescript';
+import { ProductService } from '../../product.service';
 
 @Component({
   selector: 'app-product',
@@ -11,8 +14,9 @@ export class ProductComponent implements OnInit {
   @Input()
   product!: Product;
   liked: boolean = false;
+  color = "white";
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private productService: ProductService) { }
 
   ngOnInit(): void {
   }
@@ -28,5 +32,11 @@ export class ProductComponent implements OnInit {
   toggleLike() {
     this.liked = !this.liked;
     console.log(this.liked);
+    if(this.liked){
+      this.color="pink";
+    } else {
+      this.color="white";
+    }
+
   }
 }
