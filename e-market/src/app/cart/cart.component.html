@@ -15,9 +15,6 @@
         <div class="col-md-6 col-md-offset-6"><button (click)="clearCart()" class="btn btn-outline-primary"> Clear
             Cart</button></div>
       </div>
-
-
-
       <div class="product-card rounded">
         <ul class="list-group list-group">
           <!-- <li class="list-group-item"> {{ item.title }, ${{ item.price | currency }} </li> -->
@@ -33,7 +30,7 @@
               </div>
             </div>
             <li class="list-group-item rounded">
-              <div class="container">
+              <div class="container" >
                 <div class="row">
                   <button class="btn btn-outline-primary" value="" (click)="subtractQuantity($event)"
                     [ngClass]="{'list-group-item' : 'active'}"> - </button>
@@ -43,7 +40,7 @@
                     [ngClass]="{'list-group-item' : 'active'}"> + </button>
                   <div class="col align-self-end">
                     <button class="btn btn-outline-primary" id="remove" type="submit" name="" value="Remove From Cart"
-                      [ngClass]="{'list-group-item' : 'active'}" (click)="removeFromCart($event)"><svg
+                      [ngClass]="{'list-group-item' : 'active'}" (click)="removeFromCart(item.id)"><svg
                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x"
                         viewBox="0 0 16 16">
                         <path

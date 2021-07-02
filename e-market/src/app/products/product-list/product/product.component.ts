@@ -14,6 +14,7 @@ export class ProductComponent implements OnInit {
   product!: Product;
   liked: boolean = false;
   color = "white";
+  heartValue = "bi bi-heart";
 
   constructor(private cartService: CartService, private productService: ProductService) { }
 
@@ -33,8 +34,10 @@ export class ProductComponent implements OnInit {
     console.log(this.liked);
     if(this.liked){
       this.color="red";
+      this.heartValue = "bi bi-heart-fill";
     } else {
       this.color="white";
+      this.heartValue = "bi bi-heart";
     }
 
   }

@@ -39,8 +39,8 @@ export class CartComponent implements OnInit, OnChanges {
     // return this.cartService.getCartTotal();
   }
   
-  removeFromCart(e:Event){
-    console.log(e.target);
+  removeFromCart(id:number): void {
+    this.cartService.removeItem(id);
   }
 
   clearCart() {
