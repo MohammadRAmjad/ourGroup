@@ -1,48 +1,46 @@
+import { isTaggedTemplateExpression, isTemplateExpression } from "typescript";
+import { Subject } from "rxjs";
+import { CartItem } from "../shared/cartItem.model";
 import { Product } from "../shared/product.model";
 
 export class CartService {
-    items: Product[] = [];
-    cartTotal: number;
+    cartItems: CartItem[] = [];
+   
 
     addToCart(product: Product) {
-        this.items.push(product);
+        let i = new CartItem(product, 1);
+        this.cartItems.push(i);
         console.log(product.price);
         
     }
-    addToCartTotal(price:number){
-        this.cartTotal = this.cartTotal + price;
-        console.log(this.cartTotal);
-    }
+    
 
     getCartTotal() {
-        return this.cartTotal;
+        let totalCost = 0
+        for(let item of this.cartItems ){
+           let singleItemCost =  item.item.price * item.quantity
+           totalCost += singleItemCost
+        }
+        return totalCost
     }
 
     getItems() {
-        return this.items;
+        return this.cartItems;
     }
 
-    getItem(id:number){
-        return this.items.filter(function(id){
-            console.log(id);
-        });
-    }
-
+   
     clearCart() {
         console.log(this.getItems());
-        this.items = [];
-        return this.items;
+        this.cartItems = [];
+        return this.cartItems;
     }
-    // private products: Product[] = [];
-    // getCartProducts() {
-    //     return this.products.slice();
-    // }
 
-    // addProductToCart(prod: Product) {
-    //     this.products.push(prod);
-    //     console.log("You are adding" + Product);
-    //     console.log(this.products);
-    // };
+    increaseQuantity(item:CartItem){
+        item.quantity+=1
+    }
 
-    // removeProductFromCart() {};
+    deccreaseQuantity(item:CartItem){
+        item.quantity-=1
+    }
+
 }
