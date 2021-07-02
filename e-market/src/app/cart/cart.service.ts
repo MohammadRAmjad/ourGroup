@@ -64,11 +64,10 @@ export class CartService {
     // }
 
    
-    // clearCart() {
-    //     console.log(this.getItems());
-    //     this.cartItems = [];
-    //     return this.cartItems;
-    // }
+    clearCart() {
+        
+        this.cartItems = [];
+    }
 
     // increaseQuantity(item:CartItem){
     //     item.quantity+=1

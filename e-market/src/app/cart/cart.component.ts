@@ -50,9 +50,9 @@ export class CartComponent  {
   }
 
   clearCart() {
-    this.items = [];
-    this.totalCost = 0;
-    // console.log(this.items);
+   this.cartService.clearCart()
+   this.items = []
+   this.totalCost = 0
   }
 
   addQuantity(e){
