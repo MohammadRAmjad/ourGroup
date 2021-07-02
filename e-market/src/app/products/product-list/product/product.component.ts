@@ -21,8 +21,6 @@ export class ProductComponent implements OnInit {
     console.log("Add " + this.product.title + " to cart!");
     // add to cart
     this.cartService.addToCart(this.product);
-    this.cartService.addToCartTotal(this.product.price);
-    this.product.quantity=1;
   }
 
   toggleLike() {

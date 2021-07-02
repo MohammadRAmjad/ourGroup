@@ -5,9 +5,7 @@ export class Product{
     public price:number;
     public category: string;
     public favorite: boolean;
-    public quantity:number;
-    // public imagePath: string;
-
+    
     constructor(id:number, title:string, price:number,  category: string){
         this.id = id;
         this.title =title;
