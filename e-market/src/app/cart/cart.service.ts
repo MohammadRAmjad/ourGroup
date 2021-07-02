@@ -10,9 +10,6 @@ import { Injectable } from "@angular/core";
 })
 
 export class CartService {
-    items2: Product[] = [];
-    selectedItems : Product[] = [];
-    cartTotal: number;
     cartItems: CartItem[] = [];
     items = new Subject()
     temp = []
@@ -20,36 +17,35 @@ export class CartService {
     
     addToCart(product: Product) {
      
-        
-    
-        
-        // if (product === this.getItems().find(ob => ob.id === product.id)){
-        //     product.quantity = product.quantity + 1;
-        //     console.log(product.quantity);
-           
-        // } else {
-        //     this.items.push(product);
-        //     console.log(product.price);
-        // }
-
-        // console.log("In the add method")
-      
-        let i = new CartItem(product, 1);
-        this.temp.push(i);
-        console.log(this.temp);
-        console.log(this.cartItems.includes(i));
-        console.log(i);
-        if(this.cartItems.includes(i)){
-           this.cartItems.push(i)
+      //  this.temp.push(product)
+      //  this.items.next(this.temp)
+        let newItem = new CartItem(product, 1);
+        let itemExist = false
+        let index
+        if(this.cartItems.length > 0){
+            for(let i = 0; i < this.cartItems.length; i++){
+                if(this.cartItems[i].item.id === newItem.item.id){
+                    this.cartItems[i].quantity += 1
+                    itemExist = true
+                }  
+            }
         }
-        else{
-          let result = this.cartItems.find(({item}) => 
-           item === i.item
-           )
 
-            // this.increaseQuantity(result)
-         }
-           
+        
+        this.cartItems.push(newItem)
+        
+      
+        // let i = new CartItem(product, 1);
+        // console.log(this.cartItems.includes(i))
+        // if(this.cartItems.includes(i)){
+        //    this.cartItems.push(i)
+        // }else{
+        //   let result = this.cartItems.find(({item}) => 
+        //    item === i.item
+        //    )
+        //         result.quantity+=1
+        //  }
+         this.items.next(this.cartItems)   
     }
 
     removeItem(id:number) {

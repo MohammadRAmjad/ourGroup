@@ -2,7 +2,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/cart/cart.service';
 import { Product } from 'src/app/shared/product.model';
-import { isWhiteSpaceLike } from 'typescript';
+import { CartItem } from 'src/app/shared/cartItem.model';
 import { ProductService } from '../../product.service';
 
 @Component({
