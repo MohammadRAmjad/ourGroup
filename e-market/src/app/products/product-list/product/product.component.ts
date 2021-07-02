@@ -1,3 +1,4 @@
+  
 import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/cart/cart.service';
 import { Product } from 'src/app/shared/product.model';
@@ -14,7 +15,6 @@ export class ProductComponent implements OnInit {
   product!: Product;
   liked: boolean = false;
   color = "white";
-  heartValue = "bi bi-heart";
 
   constructor(private cartService: CartService, private productService: ProductService) { }
 
@@ -25,19 +25,15 @@ export class ProductComponent implements OnInit {
     console.log("Add " + this.product.title + " to cart!");
     // add to cart
     this.cartService.addToCart(this.product);
-    this.cartService.addToCartTotal(this.product.price);
-    this.product.quantity=1;
   }
 
   toggleLike() {
     this.liked = !this.liked;
     console.log(this.liked);
     if(this.liked){
-      this.color="red";
-      this.heartValue = "bi bi-heart-fill";
+      this.color="pink";
     } else {
       this.color="white";
-      this.heartValue = "bi bi-heart";
     }
 
   }

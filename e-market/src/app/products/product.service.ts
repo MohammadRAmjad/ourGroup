@@ -18,7 +18,7 @@ private products: Product[] = [
   ];
   getProducts(v:string){
       if(v === 'All')
-        return this.products.slice();
+        return this.products;
       else{
         let selectedProducts: Product[] = [];
         for (var item of this.products){

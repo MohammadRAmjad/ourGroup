@@ -1,14 +1,4 @@
 
-
-.list-group-item button[value="Favorite"]:hover{
-    background: red;
-}
-
-.list-group-item button[value="Add to Cart"]:hover{
-    background: yellow;
-}
-
-
 /* .list-group-item:active{
     background: #03f33f;
 } */
@@ -23,4 +13,12 @@
 
 .product-card {
     margin-top: 40px;
+}
+
+.btn-outline-primary[value="Favorite"]:focus{
+    background-color: pink;
+}
+
+.btn-outline-primary[value="Add to Cart"]:focus{
+    background-color: yellow;
 }
