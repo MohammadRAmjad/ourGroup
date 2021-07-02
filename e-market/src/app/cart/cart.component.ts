@@ -1,25 +1,34 @@
 import { Component, OnChanges, OnInit} from '@angular/core';
-// import { Product } from '../shared/product.model';
+import { Product } from '../shared/product.model';
 import { CartService } from './cart.service';
-import { CartItem } from '../shared/cartItem.model';
+
 
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  //styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit, OnChanges {
-  visible:boolean = true;
-  items = this.cartService.getItems();
-  cartTotal = this.cartService.totalCost;
+export class CartComponent  {
+  //visible:boolean = true;
+  //items = this.cartService.getItems();
+ // cartTotal = this.cartService.totalCost;
+
+  items = []
+  totalCost = 0
 
   constructor(private cartService: CartService) {};
 
-  ngOnInit(): void {
-    
-  };
-
+  ngOnInit(){
+    this.cartService.getItems().subscribe((data:[])=>{
+        this.items = data
+        let total = 0
+        this.items.forEach(i=> {
+            total+=i.price
+        })
+        this.totalCost = total
+    })
+}
   ngOnChanges():void {
     console.log("hi");
   };
@@ -29,27 +38,27 @@ export class CartComponent implements OnInit, OnChanges {
   }
   
 
-  getCartTotal(){
+  // getCartTotal(){
    
-  }
+  // }
   
-  removeFromCart(e:Event){
-    console.log(e.target);
-  }
+  // removeFromCart(e:Event){
+  //   console.log(e.target);
+  // }
 
-  clearCart() {
-    this.items = this.cartService.clearCart();
-    this.cartTotal = 0;
-    // console.log(this.items);
-  }
+  // clearCart() {
+  //   this.items = this.cartService.clearCart();
+  //   this.cartTotal = 0;
+  //   // console.log(this.items);
+  // }
 
-  addQuantity(e:CartItem){
-    e.quantity+=1
-    console.log(e.quantity);
-  }
+  // addQuantity(e:CartItem){
+  //   e.quantity+=1
+  //   console.log(e.quantity);
+  // }
 
-  subtractQuantity(e:CartItem){
-    e.quantity -=1
-    console.log(e.quantity);
-  }
+  // subtractQuantity(e:CartItem){
+  //   e.quantity -=1
+  //   console.log(e.quantity);
+  // }
 }
