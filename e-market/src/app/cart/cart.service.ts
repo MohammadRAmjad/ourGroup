@@ -2,7 +2,7 @@ import { forEachTrailingCommentRange, isTaggedTemplateExpression, isTemplateExpr
 import { Subject } from "rxjs";
 import { CartItem } from "../shared/cartItem.model";
 import { Product } from "../shared/product.model";
-import { identifierModuleUrl } from "@angular/compiler";
+
 import { Injectable } from "@angular/core";
 
 @Injectable({
@@ -16,9 +16,6 @@ export class CartService {
 
     
     addToCart(product: Product) {
-     
-      //  this.temp.push(product)
-      //  this.items.next(this.temp)
         let newItem = new CartItem(product, 1);
         let itemExist = false
         let index
@@ -27,54 +24,50 @@ export class CartService {
                 if(this.cartItems[i].item.id === newItem.item.id){
                     this.cartItems[i].quantity += 1
                     itemExist = true
+                    this.items.next(this.cartItems)  
                 }  
             }
-        }
-
-        
+        } 
+    //    else if(itemExist || this.cartItems.length<= 0){
+    //         this.cartItems.push(newItem)
+    //         this.items.next(this.cartItems)   
+    //     }    
+    
         this.cartItems.push(newItem)
-        
-      
-        // let i = new CartItem(product, 1);
-        // console.log(this.cartItems.includes(i))
-        // if(this.cartItems.includes(i)){
-        //    this.cartItems.push(i)
-        // }else{
-        //   let result = this.cartItems.find(({item}) => 
-        //    item === i.item
-        //    )
-        //         result.quantity+=1
-        //  }
-         this.items.next(this.cartItems)   
+        this.items.next(this.cartItems)     
+    }
+
+    removeItemFromCart(item:CartItem){
+        let index
+        for(let i = 0; i < this.cartItems.length; i++){
+            if (this.cartItems[i].item.title === item.item.title){
+               if(this.cartItems[i].quantity > 1){
+                this.cartItems[i].quantity -= 1
+               }
+               else{
+                   this.cartItems.splice(i,1)
+               }
+            }
+            break
+        } 
     }
     
+    calcTotalCost(cis: CartItem[]) {
+        let total = 0
+        for (let i of cis) {
+            let oneitem = i.item.price * i.quantity
+            total+= oneitem
+        }
+        return total
+    }
+
     getItems(){
         return this.items
     }
 
-    // setCartTotal() {
-    //     for(let item of this.cartItems ){
-    //        let singleItemCost =  item.item.price * item.quantity
-    //         this.totalCost += singleItemCost
-    //     }
-    // }
-
-    // getItems() {
-    //     return this.cartItems;
-    // }
-
-   
     clearCart() {
         
         this.cartItems = [];
     }
-
-    // increaseQuantity(item:CartItem){
-    //     item.quantity+=1
-    // }
-
-    // deccreaseQuantity(item:CartItem){
-    //     item.quantity-=1
-    // }
 
 }

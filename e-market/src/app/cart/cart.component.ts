@@ -8,7 +8,7 @@ import { CartService } from './cart.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  //styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css']
 })
 export class CartComponent  {
 
@@ -20,33 +20,16 @@ export class CartComponent  {
   ngOnInit(){
     this.cartService.getItems().subscribe((data:[])=>{
         this.items = data
-        let total = 0
-        this.items.forEach(i=> {
-            total+=i.item.price
-            console.log("Item name: " + i.item.title)
-            console.log("Item quantity: " + i.quantity)
-
-        })
-        this.totalCost = total
+        this.totalCost = this.cartService.calcTotalCost(this.items)
         console.log(this.items.length)
        
     })
 }
-  ngOnChanges():void {
-    console.log("hi");
-  };
 
-  $onChanges(){
-    console.log('hi')
-  }
-  
+  removeFromCart(e:CartItem){
+    this.cartService.removeItemFromCart(e)
+    this.totalCost -= e.item.price
 
-  // getCartTotal(){
-   
-  // }
-  
-  removeFromCart(e:Event){
-    console.log(e.target);
   }
 
   clearCart() {
@@ -55,13 +38,6 @@ export class CartComponent  {
    this.totalCost = 0
   }
 
-  addQuantity(e){
-    e.quantity+=1
-    console.log(e.quantity);
-  }
+ 
 
-  subtractQuantity(e){
-    e.quantity -=1
-    console.log(e.quantity);
-  }
 }

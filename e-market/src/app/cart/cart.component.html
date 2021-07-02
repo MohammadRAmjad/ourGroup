@@ -1,14 +1,7 @@
 
 <div class="row cart">
   <div class="col-12">
-    <!-- <app-cart-edit></app-cart-edit> -->
-
     <ul class="list-group">
-      <!-- <a class="list-group-item" style="cursor: pointer">
-         Cart Total : {{cartTotal}}
-      
-        Cart: {{cartProducts}} 
-      </a> -->
       <div class="row">
         <div class="col">
           <h3>Cart</h3>
@@ -18,10 +11,8 @@
       </div>
 
 
-
       <div class="product-card rounded">
         <ul class="list-group list-group">
-          <!-- <li class="list-group-item"> {{ item.title }, ${{ item.price | currency }} </li> -->
           <div class="cart-item " *ngFor="let item of items">
             <div class="list-group-item container">
               <div class="row">
@@ -42,7 +33,7 @@
             
                   <div class="col align-self-end">
                     <button class="btn btn-outline-primary" id="remove" type="submit" name="" value="Remove From Cart"
-                      [ngClass]="{'list-group-item' : 'active'}" (click)="removeFromCart($event)"><svg
+                      [ngClass]="{'list-group-item' : 'active'}" (click)="removeFromCart(item)"><svg
                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x"
                         viewBox="0 0 16 16">
                         <path
@@ -68,26 +59,3 @@
   </div>
 </div>
 
-<!-- *ngFor="let product of items" -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-<h4>Cart</h4>
-        <p *ngFor="let i of items">{{i.item.title}}</p>
-        <p>{{totalCost}}</p> -->
