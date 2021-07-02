@@ -36,12 +36,10 @@
             <li class="list-group-item rounded">
               <div class="container">
                 <div class="row">
-                  <button class="btn btn-outline-primary" value="" (click)="subtractQuantity($event)"
-                    [ngClass]="{'list-group-item' : 'active'}"> - </button>
+                
                   <button class="btn btn-outline-primary" value="" [ngClass]="{'list-group-item' : 'active'}" disabled>
                     {{ item.quantity }} </button>
-                  <button class="btn btn-outline-primary " value="" (click)="addQuantity($event)"
-                    [ngClass]="{'list-group-item' : 'active'}"> + </button>
+            
                   <div class="col align-self-end">
                     <button class="btn btn-outline-primary" id="remove" type="submit" name="" value="Remove From Cart"
                       [ngClass]="{'list-group-item' : 'active'}" (click)="removeFromCart($event)"><svg
