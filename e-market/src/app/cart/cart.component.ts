@@ -29,13 +29,7 @@ export class CartComponent  {
     //     this.totalCost = total
     // })
 }
-  ngOnChanges():void {
-    console.log("hi");
-  };
 
-  $onChanges(){
-    console.log('hi')
-  }
   
 
   // getCartTotal(){
@@ -49,11 +43,11 @@ export class CartComponent  {
   //   console.log(e.target);
   // }
 
-  // clearCart() {
-  //   this.items = this.cartService.clearCart();
-  //   this.cartTotal = 0;
-  //   // console.log(this.items);
-  // }
+  clearCart() {
+    this.items = this.cartService.clearCart();
+    this.totalCost = 0;
+    // console.log(this.items);
+  }
 
   // addQuantity(e:CartItem){
   //   e.quantity+=1

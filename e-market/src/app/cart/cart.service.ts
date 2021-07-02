@@ -13,15 +13,15 @@ export class CartService {
     items2: Product[] = [];
     selectedItems : Product[] = [];
     cartTotal: number;
-  //  cartItems: CartItem[] = [];
+    cartItems: CartItem[] = [];
     items = new Subject()
     temp = []
 
     
     addToCart(product: Product) {
      
-        this.temp.push(product)
-        this.items.next(this.temp)
+        
+    
         
         // if (product === this.getItems().find(ob => ob.id === product.id)){
         //     product.quantity = product.quantity + 1;
@@ -34,17 +34,21 @@ export class CartService {
 
         // console.log("In the add method")
       
-        // let i = new CartItem(product, 1);
-        // console.log(this.cartItems.includes(i))
-        // if(this.cartItems.includes(i)){
-        //    this.cartItems.push(i)
-        // }else{
-        //   let result = this.cartItems.find(({item}) => 
-        //    item === i.item
-        //    )
+        let i = new CartItem(product, 1);
+        this.temp.push(i);
+        console.log(this.temp);
+        console.log(this.cartItems.includes(i));
+        console.log(i);
+        if(this.cartItems.includes(i)){
+           this.cartItems.push(i)
+        }
+        else{
+          let result = this.cartItems.find(({item}) => 
+           item === i.item
+           )
 
-        //     this.increaseQuantity(result)
-        //  }
+            // this.increaseQuantity(result)
+         }
            
     }
 
@@ -75,17 +79,17 @@ export class CartService {
     //         console.log(id);
     //     });
    
-    // clearCart() {
-    //     console.log(this.getItems());
-    //     this.cartItems = [];
-    //     return this.cartItems;
-    // }
+    clearCart() {
+        console.log(this.getItems());
+        this.cartItems = [];
+        return this.cartItems;
+    }
 
     // increaseQuantity(item:CartItem){
-    //     item.quantity+=1
+    //     item.quantity = item.quantity + 1;
     // }
 
-    // deccreaseQuantity(item:CartItem){
+    // decreaseQuantity(item:CartItem){
     //     item.quantity-=1
     // }
 
