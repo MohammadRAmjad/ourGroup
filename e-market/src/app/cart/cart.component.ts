@@ -12,19 +12,12 @@ import { CartItem } from '../shared/cartItem.model';
 export class CartComponent implements OnInit, OnChanges {
   visible:boolean = true;
   items = this.cartService.getItems();
-  cartTotal = this.cartService.getCartTotal();
+  cartTotal = this.cartService.totalCost;
 
   constructor(private cartService: CartService) {};
 
   ngOnInit(): void {
-    this.cartTotal = this.cartService.getCartTotal();
-    // this.cartService.getItems().subscribe((data:[])=>{
-    //   console.log(data);
-    //   this.items.forEach(i=>{
-    //     this.cartTotal=this.cartTotal + i.price;
-    //     console.log("hopefully this is the total: " + this.cartTotal);
-    //   })
-    // })
+    
   };
 
   ngOnChanges():void {
@@ -37,8 +30,7 @@ export class CartComponent implements OnInit, OnChanges {
   
 
   getCartTotal(){
-    // this.cartTotal = this.cartService.getCartTotal();
-    // return this.cartService.getCartTotal();
+   
   }
   
   removeFromCart(e:Event){
@@ -51,11 +43,13 @@ export class CartComponent implements OnInit, OnChanges {
     // console.log(this.items);
   }
 
-  addQuantity(e:Event){
-    console.log(e);
+  addQuantity(e:CartItem){
+    e.quantity+=1
+    console.log(e.quantity);
   }
 
-  subtractQuantity(e:Event){
-    console.log(e);
+  subtractQuantity(e:CartItem){
+    e.quantity -=1
+    console.log(e.quantity);
   }
 }
