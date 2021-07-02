@@ -31,9 +31,9 @@ export class CartService {
             }
         }
 
-        else {
-            this.cartItems.push(newItem)
-        }
+        
+        this.cartItems.push(newItem)
+        
       
         // let i = new CartItem(product, 1);
         // console.log(this.cartItems.includes(i))
