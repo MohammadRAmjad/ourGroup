@@ -14,59 +14,71 @@ export class CartService {
     items = new Subject()
     temp = []
 
-    
+
     addToCart(product: Product) {
         let newItem = new CartItem(product, 1);
         let itemExist = false
         let index
-        if(this.cartItems.length > 0){
-            for(let i = 0; i < this.cartItems.length; i++){
-                if(this.cartItems[i].item.id === newItem.item.id){
+        if (this.cartItems.length > 0) {
+            for (let i = 0; i < this.cartItems.length; i++) {
+                if (!(this.cartItems[i].item.id === newItem.item.id)) {
+                    console.log(newItem.item.id);
+                    console.log(this.cartItems[i].item.id);
+                    // itemExist = true
+                    console.log(this.items.next(this.cartItems))
+                    this.cartItems.push(newItem)
+                    this.items.next(this.cartItems)
+                }
+                if (this.cartItems[i].item.title === newItem.item.title) {
                     this.cartItems[i].quantity += 1
-                    itemExist = true
-                    this.items.next(this.cartItems)  
-                }  
+                    console.log("these are the same product");
+                    this.items.next(this.cartItems)
+                }
             }
-        } 
-    //    else if(itemExist || this.cartItems.length<= 0){
-    //         this.cartItems.push(newItem)
-    //         this.items.next(this.cartItems)   
-    //     }    
-    
-        this.cartItems.push(newItem)
-        this.items.next(this.cartItems)     
+
+        } else if (this.cartItems.length <= 0) {
+            this.cartItems.push(newItem)
+            this.items.next(this.cartItems)
+        }
+
+        //    else if(itemExist || this.cartItems.length<= 0){
+        //         this.cartItems.push(newItem)
+        //         this.items.next(this.cartItems)   
+        //     }    
+
+
     }
 
-    removeItemFromCart(item:CartItem){
+    removeItemFromCart(item: CartItem) {
         let index
-        for(let i = 0; i < this.cartItems.length; i++){
-            if (this.cartItems[i].item.title === item.item.title){
-               if(this.cartItems[i].quantity > 1){
-                this.cartItems[i].quantity -= 1
-               }
-               else{
-                   this.cartItems.splice(i,1)
-               }
+        for (let i = 0; i < this.cartItems.length; i++) {
+            if (this.cartItems[i].item.title === item.item.title) {
+                if (this.cartItems[i].quantity > 1) {
+                    this.cartItems[i].quantity -= 1
+                }
+                else {
+                    this.cartItems.splice(i, 1)
+                }
             }
             break
-        } 
+        }
     }
-    
+
     calcTotalCost(cis: CartItem[]) {
         let total = 0
         for (let i of cis) {
             let oneitem = i.item.price * i.quantity
-            total+= oneitem
+            total += oneitem
         }
         return total
     }
 
-    getItems(){
+    getItems() {
         return this.items
     }
 
     clearCart() {
-        
+
         this.cartItems = [];
     }
 
