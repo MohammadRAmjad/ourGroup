@@ -22,12 +22,8 @@ export class CartService {
         if (this.cartItems.length > 0) {
             for (let i = 0; i < this.cartItems.length; i++) {
                 if (!(this.cartItems[i].item.id === newItem.item.id)) {
-                    console.log(newItem.item.id);
-                    console.log(this.cartItems[i].item.id);
-                    // itemExist = true
-                    console.log(this.items.next(this.cartItems))
                     this.cartItems.push(newItem)
-                    this.items.next(this.cartItems)
+                    // this.items.next(this.cartItems)
                 }
                 if (this.cartItems[i].item.title === newItem.item.title) {
                     this.cartItems[i].quantity += 1
@@ -51,6 +47,20 @@ export class CartService {
 
     removeItemFromCart(item: CartItem) {
         let index
+        for (let i = 0; i < this.cartItems.length; i++) {
+            if (this.cartItems[i].item.title === item.item.title) {
+                if (this.cartItems[i].quantity > 1) {
+                    this.cartItems[i].quantity -= 1
+                }
+                else {
+                    this.cartItems.splice(i, 1)
+                }
+            }
+            break
+        }
+    }
+
+    subtractQuantity(item: CartItem) {
         for (let i = 0; i < this.cartItems.length; i++) {
             if (this.cartItems[i].item.title === item.item.title) {
                 if (this.cartItems[i].quantity > 1) {

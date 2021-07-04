@@ -27,7 +27,8 @@
             <li class="list-group-item rounded">
               <div class="container">
                 <div class="row">
-                
+                  <button class="btn btn-outline-primary" value="" [ngClass]="{'list-group-item' : 'active'}" (click)="subtractQuantity(item)">
+                    - </button>
                   <button class="btn btn-outline-primary" value="" [ngClass]="{'list-group-item' : 'active'}" disabled>
                     {{ item.quantity }} </button>
             

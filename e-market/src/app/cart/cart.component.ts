@@ -38,6 +38,10 @@ export class CartComponent  {
    this.totalCost = 0
   }
 
+  subtractQuantity(e:CartItem){
+    this.cartService.subtractQuantity(e);
+    this.totalCost -= e.item.price
+  }
  
 
 }
